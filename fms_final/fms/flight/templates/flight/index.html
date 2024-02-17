@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelHub - Your Ultimate Travel Companion</title>
+<style>
+body {
+    background-color:  rgb(0, 0, 75);
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: rgb(0, 0, 75);
+    color: #fff;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #f9f5f5;
+}
+.hero {
+    background-image: url('bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; /* Adjust the height as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-content {
+    color: #fff; /* Set text color to contrast with the background */
+}
+
+
+.hero h2 {
+    color: #ffffff;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+/* Search Flights Section Styles */
+#search-flights {
+    background-color: white;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    box-sizing: border-box;
+}
+
+#search-flights h2 {
+    color: rgb(8, 8, 8);
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+#flight-search-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#flight-search-form input[type="text"],
+#flight-search-form input[type="date"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 80%;
+}
+
+#flight-search-form button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    align-self: auto;
+    width: 20%;
+    transition: background-color 0.3s ease;
+}
+
+#flight-search-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Search Hotels Section Styles */
+#search-hotels {
+    background-color: white;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    box-sizing: border-box;
+}
+
+#search-hotels h2 {
+    color: rgb(3, 3, 3);
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+#hotel-search-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#hotel-search-form input[type="text"],
+#hotel-search-form input[type="date"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 80%;
+}
+
+#hotel-search-form button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    align-self: auto;
+    width: 20%;
+    transition: background-color 0.3s ease;
+}
+
+#hotel-search-form button:hover {
+    background-color: #0056b3;
+}
+
+
+/* Contact */
+
+#contact {
+    background-color: #f8f8f8;
+    padding: 20px;
+    text-align: center; /* Center align the text within the section */
+}
+
+#contact h2 {
+    color: #333;
+}
+
+.contact-form {
+    max-width: 400px;
+    margin: 20px auto; /* Center the form horizontally */
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form label {
+    margin-bottom: 8px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+.contact-form button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.contact-form button:hover {
+    background-color: #45a049;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <h1>Flight Management System</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="{% url 'flight:index' %}">Home</a></li>
+            <li><a href="{% url 'flight:flight' %}">Flights</a></li>
+            <li><a href="{% url 'hotel:hotel' %}">Hotels</a></li>
+            <li><a href="{% url 'flight:login' %}">Login</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h2>Explore the World with FMS</h2>
+        <p>Find the best flights and hotels for your next adventure.</p>
+        <a href="{% url 'flight:login' %}" class="btn">Start Your Journey</a>
+    </div>
+</section>
+
+
+
+<!-- Search Flights Section -->
+<section id="search-flights">
+    <h2>Search Flights</h2>
+    <form id="flight-search-form" method="post" action="{% url 'flight:flight_search' %}">
+        {% csrf_token %}
+        <!-- Add input fields for flight search -->
+        <input type="text" name="from" id="from" placeholder="From" required>
+        
+        <input type="text" name="to" id="to" placeholder="To" required>
+        <!-- <input type="date" name="from_date" id="from_date" required> -->
+
+        <button type="submit">Search</button>
+    </form>
+</section>
+
+<!-- Search Hotels Section -->
+<section id="search-hotels">
+    <h2>Search Hotels</h2>
+    <form id="hotel-search-form">
+        <!-- Add input fields for hotel search -->
+        <input type="text" placeholder="City">
+        <input type="date" placeholder="Check-In">
+        <button type="submit">Search</button>
+    </form>
+</section>
+
+<section id="contact">
+    <h2>Contact Us</h2>
+    <p>Have questions or feedback? Reach out to us!</p>
+
+    <div class="contact-form">
+        <form id="complaint" action="{% url 'flight:makeComplaint' %}" method="post">
+            {% csrf_token %}
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</section>
+
+</body>
+</html>
